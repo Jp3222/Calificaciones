@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         /*
         15 Alumnos
+        datos
         Nombre
         No. de control
         Calficacion
@@ -71,9 +72,17 @@ public class Main {
          */
         Logica metodos = new Logica();
         Busqueda metodo = new Busqueda();
-        int opc;
+        /*
+        opc <- Variable para leer la opcion
+        in <- Variable para leer los enteros
+        x <- Variable para leer no con decimales
+        S <- Variable para leer Cadenas
+         */
+        int opc, opc2, indice;
         double x;
-        do {//Esto se va a repetir
+        String S;
+        do {//Esto se va a hacer y a repetir
+            opc2 = 1;
             System.out.println("Usuario: User@123"
                     + "\n¿Que desea hacer?"
                     + "\n[1]Promedio general"
@@ -87,8 +96,7 @@ public class Main {
             opc = V.nextInt();
             switch (opc) {
                 case 1:
-                    System.out.println("Promedio Grupal: " + metodos.PromedioGrupal(Calificacion));
-                    System.out.println("");
+                    System.out.println("Promedio Grupal: " + metodos.PromedioGrupal(Calificacion) + "\n");
                     break;
                 case 2:
                     System.out.println("Ver los primeros 5 datos");
@@ -102,15 +110,13 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Introduzca el indice de el alumno");
-                    opc = V.nextInt();
-                    System.out.println(metodo.Datos(opc, Nombre, NoControl, Calificacion));
-                    System.out.println("");
+                    indice = V.nextInt();
+                    System.out.println(metodo.Datos(indice, Nombre, NoControl, Calificacion) + "\n");
                     break;
                 case 5:
                     System.out.println("Introduzca el No de control de el alumno");
-                    opc = V.nextInt();
-                    System.out.println(metodo.Secuencial(opc, Nombre, NoControl, Calificacion));
-                    System.out.println("");
+                    indice = V.nextInt();
+                    System.out.println(metodo.Secuencial(indice, Nombre, NoControl, Calificacion) + "\n");
                     break;
                 case 6:
                     System.out.println("Mostrar Datos\n");
@@ -123,8 +129,9 @@ public class Main {
                     metodo.BusquedaPromedio(x, Nombre, NoControl, Calificacion);
                     break;
                 case 8:
-                    for (int i = 0; i <= 5; i++) {
-                        System.out.println("Saliendo...");
+                    String xd[] = {"Borrando datos", "Guardando programa", "saliendo..." + "saliendo..."};
+                    for (int i = 0; i < xd.length; i++) {
+                        System.out.println(xd[i]);
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException ex) {
@@ -136,10 +143,13 @@ public class Main {
                 default:
                     System.out.println("Opcion erronea");
             }
-            System.out.println("");
-            //Mientras nuestra opcion sea diferente de la opcion 4
-        } while (opc != 8);
+            if (opc != 8) {
+                System.out.println("\n¿Desea continuar?"
+                        + "[0]Si/[1]No");
+                opc2 = V.nextInt();
+            }
 
+            //Mientras nuestra opcion sea diferente de la opcion 8
+        } while (opc2 != 1);
     }
-
 }
